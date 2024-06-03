@@ -1,6 +1,5 @@
 package ru.safronov.util;
 
-import jakarta.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -13,7 +12,7 @@ public class ExerciseData {
 
   private static long idCounter = 1;
   private List<Exercise> sortExercises;
-  private YamlExerciseProperties yamlExerciseProperties;
+  private final YamlExerciseProperties yamlExerciseProperties;
 
   @Autowired
   public ExerciseData(YamlExerciseProperties yamlExerciseProperties) {
