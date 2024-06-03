@@ -26,7 +26,8 @@ public class ExerciseData {
 
   private List<Exercise> getExercises() {
     List<Exercise> exercises = new ArrayList<>();
-    addExercisesToList(exercises, yamlExerciseProperties.getNames(), yamlExerciseProperties.getUrls());
+    addExercisesToList(exercises, yamlExerciseProperties.getNames(),
+        yamlExerciseProperties.getUrls());
     return exercises;
   }
 
