@@ -1,5 +1,6 @@
 package ru.safronov;
 
+import jakarta.annotation.PostConstruct;
 import java.util.List;
 import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +26,20 @@ import ru.safronov.util.ExerciseData;
 public class TrainingBot implements SpringLongPollingBot, LongPollingSingleThreadUpdateConsumer {
 
   private final TelegramClient telegramClient;
-  private final List<Exercise> allExercises = ExerciseData.getSortExercises();
-  @Autowired
-  private Environment env;
+  private List<Exercise> allExercises;
+  private final Environment env;
+  private final ExerciseData exerciseData;
 
-  public TrainingBot() {
+  @Autowired
+  public TrainingBot(Environment env, ExerciseData exerciseData) {
     this.telegramClient = new OkHttpTelegramClient(getBotToken());
+    this.env = env;
+    this.exerciseData = exerciseData;
+  }
+
+  @PostConstruct
+  void init() {
+    allExercises = exerciseData.getSortedExercises();
   }
 
   @Override
@@ -50,13 +59,13 @@ public class TrainingBot implements SpringLongPollingBot, LongPollingSingleThrea
       String messageText = update.getMessage().getText();
       long chatId = update.getMessage().getChatId();
       String firstName = update.getMessage().getChat().getFirstName();
-      String exerciseUrl;
+      String exerciseUrl = getExerciseUrl(allExercises, messageText);
 
       if (messageText.equals("/start")) {
         createExerciseLinks(chatId, firstName);
       }
       //if messageText equals one of exerciseName
-      else if ((exerciseUrl = getExerciseUrl(allExercises, messageText)) != null) {
+      else if (exerciseUrl != null) {
         sendMessage(chatId, exerciseUrl);
       } else {
         sendMessage(chatId, env.getProperty("unknown.command"));
@@ -105,7 +114,7 @@ public class TrainingBot implements SpringLongPollingBot, LongPollingSingleThrea
           .findAny()
           .orElseThrow().getUrl();
     } catch (NoSuchElementException ex) {
-      throw new RuntimeException(ex.getMessage());
+      return null;
     }
   }
 }
