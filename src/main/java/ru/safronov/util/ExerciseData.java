@@ -1,34 +1,45 @@
 package ru.safronov.util;
 
+import jakarta.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import ru.safronov.model.Exercise;
 
+@Component
 public class ExerciseData {
 
   private static long idCounter = 1;
-  private static List<Exercise> sortExercises;
+  private List<Exercise> sortExercises;
+  private YamlExerciseProperties yamlExerciseProperties;
 
-  public static List<Exercise> getSortExercises() {
+  @Autowired
+  public ExerciseData(YamlExerciseProperties yamlExerciseProperties) {
+    this.yamlExerciseProperties = yamlExerciseProperties;
+  }
+
+  public List<Exercise> getSortedExercises() {
     sortExercises();
     return sortExercises;
   }
 
-  private static List<Exercise> getExercises() {
+  private List<Exercise> getExercises() {
     List<Exercise> exercises = new ArrayList<>();
-    exercises.add(new Exercise(idCounter++, "с_ноги_на_ногу", "url1"));
-    exercises.add(new Exercise(idCounter++, "высокое_бедро", "url2"));
-    exercises.add(new Exercise(idCounter++, "захлест", "url3"));
-    exercises.add(new Exercise(idCounter++, "олений_бег", "url4"));
-    exercises.add(new Exercise(idCounter++, "школьница", "url5"));
-    exercises.add(new Exercise(idCounter++, "семенящий_бег", "url6"));
-
+    addExercisesToList(exercises, yamlExerciseProperties.getNames(), yamlExerciseProperties.getUrls());
     return exercises;
   }
 
-  private static void sortExercises() {
+  private void sortExercises() {
     sortExercises = getExercises();
     sortExercises.sort(Comparator.comparing(Exercise::getName));
+  }
+
+  private void addExercisesToList(List<Exercise> finalList, List<String> exerciseNames,
+      List<String> exerciseUrls) {
+    for (int i = 0; i < exerciseNames.size(); i++) {
+      finalList.add(new Exercise(idCounter++, exerciseNames.get(i), exerciseUrls.get(i)));
+    }
   }
 }
