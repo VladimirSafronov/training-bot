@@ -1,21 +1,9 @@
-exercise:
-  names:
-    - с ноги на ногу
-    - семенящий бег
-    - захлест
-    - школьница
-    - буратино
-    - высокое бедро
-    - выпрыгивания вверх
-    - подскоки боком
-    - прыжки в шаги
-  urls:
-    - url1
-    - url2
-    - url3
-    - url4
-    - url5
-    - url6
-    - url7
-    - url8
-    - url9
+content:
+  exercises:
+    - id: 1
+      name: с ноги на ногу
+      url: https://cdn.subsflow.io/tmp/safron.mp4
+
+    - id: 2
+      name: семенящий бег
+      url: https://file-examples.com/storage/fe4e1227086659fa1a24064/2017/04/file_example_MP4_480_1_5MG.mp4

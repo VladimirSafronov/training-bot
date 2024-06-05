@@ -1,6 +1,5 @@
 package ru.safronov.util;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import ru.safronov.model.Exercise;
 @Component
 public class ExerciseData {
 
-  private static long idCounter = 1;
   private List<Exercise> sortExercises;
   private final YamlExerciseProperties yamlExerciseProperties;
 
@@ -25,21 +23,11 @@ public class ExerciseData {
   }
 
   private List<Exercise> getExercises() {
-    List<Exercise> exercises = new ArrayList<>();
-    addExercisesToList(exercises, yamlExerciseProperties.getNames(),
-        yamlExerciseProperties.getUrls());
-    return exercises;
+    return yamlExerciseProperties.getExercises();
   }
 
   private void sortExercises() {
     sortExercises = getExercises();
     sortExercises.sort(Comparator.comparing(Exercise::getName));
-  }
-
-  private void addExercisesToList(List<Exercise> finalList, List<String> exerciseNames,
-      List<String> exerciseUrls) {
-    for (int i = 0; i < exerciseNames.size(); i++) {
-      finalList.add(new Exercise(idCounter++, exerciseNames.get(i), exerciseUrls.get(i)));
-    }
   }
 }
