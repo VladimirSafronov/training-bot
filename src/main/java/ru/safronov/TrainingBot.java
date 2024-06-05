@@ -12,6 +12,8 @@ import org.telegram.telegrambots.longpolling.interfaces.LongPollingUpdateConsume
 import org.telegram.telegrambots.longpolling.starter.SpringLongPollingBot;
 import org.telegram.telegrambots.longpolling.util.LongPollingSingleThreadUpdateConsumer;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.send.SendVideo;
+import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup.ReplyKeyboardMarkupBuilder;
@@ -66,7 +68,7 @@ public class TrainingBot implements SpringLongPollingBot, LongPollingSingleThrea
       }
       //if messageText equals one of exerciseName
       else if (exerciseUrl != null) {
-        sendMessage(chatId, exerciseUrl);
+        sendVideo(chatId, exerciseUrl);
       } else {
         sendMessage(chatId, env.getProperty("unknown.command"));
       }
@@ -78,6 +80,21 @@ public class TrainingBot implements SpringLongPollingBot, LongPollingSingleThrea
         .builder()
         .chatId(chatId)
         .text(messageText)
+        .build();
+
+    try {
+      telegramClient.execute(message);
+    } catch (TelegramApiException ex) {
+      throw new RuntimeException(ex.getMessage());
+    }
+  }
+
+  private void sendVideo(long chatId, String exerciseUrl) {
+
+    SendVideo message = SendVideo
+        .builder()
+        .chatId(chatId)
+        .video(new InputFile(exerciseUrl))
         .build();
 
     try {

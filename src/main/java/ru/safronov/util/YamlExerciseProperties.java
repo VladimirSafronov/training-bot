@@ -4,28 +4,20 @@ import java.util.List;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import ru.safronov.model.Exercise;
 
 @Configuration
-@ConfigurationProperties(prefix = "exercise")
+@ConfigurationProperties(prefix = "content")
 @PropertySource(value = "exercises.yml", factory = YamlPropertySourceFactory.class)
 public class YamlExerciseProperties {
 
-  private List<String> names;
-  private List<String> urls;
+  private List<Exercise> exercises;
 
-  public List<String> getNames() {
-    return names;
+  public List<Exercise> getExercises() {
+    return exercises;
   }
 
-  public void setNames(List<String> names) {
-    this.names = names;
-  }
-
-  public List<String> getUrls() {
-    return urls;
-  }
-
-  public void setUrls(List<String> urls) {
-    this.urls = urls;
+  public void setExercises(List<Exercise> exercises) {
+    this.exercises = exercises;
   }
 }
