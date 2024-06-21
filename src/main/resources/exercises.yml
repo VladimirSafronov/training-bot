@@ -1,9 +1,107 @@
 content:
   exercises:
+    #беговые упражнения
     - id: 1
       name: с ноги на ногу
-      url: https://cdn.subsflow.io/tmp/safron.mp4
+      url: https://safrcloud.fra1.cdn.digitaloceanspaces.com/exercises/snoginanogy.mp4
 
     - id: 2
       name: семенящий бег
-      url: https://file-examples.com/storage/fe4e1227086659fa1a24064/2017/04/file_example_MP4_480_1_5MG.mp4
+      url: https://safrcloud.fra1.cdn.digitaloceanspaces.com/exercises/semenbeg.mp4
+
+    - id: 3
+      name: подскоки боком
+      url: https://safrcloud.fra1.cdn.digitaloceanspaces.com/exercises/podskokibokom.mp4
+
+    - id: 4
+      name: прыжки в шаги
+      url: https://safrcloud.fra1.cdn.digitaloceanspaces.com/exercises/prujkivshagi.mp4
+
+    - id: 5
+      name: школьница
+      url: https://safrcloud.fra1.cdn.digitaloceanspaces.com/exercises/shkolnica.mp4
+
+    - id: 6
+      name: выпрыгивания вверх
+      url: https://safrcloud.fra1.cdn.digitaloceanspaces.com/exercises/vuprvverh.mp4
+
+    - id: 7
+      name: высокое бедро
+      url: https://safrcloud.fra1.cdn.digitaloceanspaces.com/exercises/vusokoebedro.mp4
+
+    - id: 8
+      name: захлест
+      url: https://safrcloud.fra1.cdn.digitaloceanspaces.com/exercises/zahlest.mp4
+
+    - id: 9
+      name: буратино
+      url: https://safrcloud.fra1.cdn.digitaloceanspaces.com/exercises/byratino.mp4
+
+    #ноги
+    - id: 101
+      name: длинный обратный мост
+      url: https://safrcloud.fra1.cdn.digitaloceanspaces.com/exercises/dlinnuiobrmost.mp4
+
+    - id: 102
+      name: ласточка с выпрыгиванием
+      url: https://safrcloud.fra1.cdn.digitaloceanspaces.com/exercises/lastochkavupr.mp4
+
+    - id: 103
+      name: ласточка
+      url: https://safrcloud.fra1.cdn.digitaloceanspaces.com/exercises/lastochka.mp4
+
+    - id: 104
+      name: наклон корпуса с резиной
+      url: https://safrcloud.fra1.cdn.digitaloceanspaces.com/exercises/naklonukorpusaotvedianogu.mp4
+
+    - id: 105
+      name: обратный мост на прямых руках
+      url: https://safrcloud.fra1.cdn.digitaloceanspaces.com/exercises/obrmostpiamueruki.mp4
+
+    - id: 106
+      name: обратный мост
+      url: https://safrcloud.fra1.cdn.digitaloceanspaces.com/exercises/obrmost.mp4
+
+    - id: 107
+      name: обратный выпад
+      url: https://safrcloud.fra1.cdn.digitaloceanspaces.com/exercises/obrvupad.mp4
+
+    - id: 108
+      name: приседания с выпрыгиванием
+      url: https://safrcloud.fra1.cdn.digitaloceanspaces.com/exercises/prisedvupr.mp4
+
+    - id: 109
+      name: воздушный стул
+      url: https://safrcloud.fra1.cdn.digitaloceanspaces.com/exercises/vozdyshnuistyl.mp4
+
+    #пресс
+    - id: 201
+      name: боковая планка
+      url: https://safrcloud.fra1.cdn.digitaloceanspaces.com/exercises/bokplanka.mp4
+
+    - id: 202
+      name: чебурашка
+      url: https://safrcloud.fra1.cdn.digitaloceanspaces.com/exercises/chebyrashka.mp4
+
+    - id: 204
+      name: жук
+      url: https://safrcloud.fra1.cdn.digitaloceanspaces.com/exercises/jyk.mp4
+
+    - id: 205
+      name: планка
+      url: https://safrcloud.fra1.cdn.digitaloceanspaces.com/exercises/planka.mp4
+
+    - id: 206
+      name: тягожим
+      url: https://safrcloud.fra1.cdn.digitaloceanspaces.com/exercises/tiagojim.mp4
+
+    - id: 207
+      name: звезда
+      url: https://safrcloud.fra1.cdn.digitaloceanspaces.com/exercises/zvezda.mp4
+
+    #спина
+    - id: 301
+      name: лодочка
+      url: https://safrcloud.fra1.cdn.digitaloceanspaces.com/exercises/lodochka.mp4
+
+    #руки

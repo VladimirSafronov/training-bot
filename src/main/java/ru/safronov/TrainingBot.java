@@ -1,6 +1,9 @@
 package ru.safronov;
 
 import jakarta.annotation.PostConstruct;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.List;
 import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,15 +94,17 @@ public class TrainingBot implements SpringLongPollingBot, LongPollingSingleThrea
 
   private void sendVideo(long chatId, String exerciseUrl) {
 
-    SendVideo message = SendVideo
-        .builder()
-        .chatId(chatId)
-        .video(new InputFile(exerciseUrl))
-        .build();
+    try (InputStream inputStream = new URL(exerciseUrl).openStream()) {
+      String fileName = exerciseUrl.substring(exerciseUrl.lastIndexOf('/') + 1);
+      SendVideo sendVideo = SendVideo.builder()
+          .chatId(chatId)
+          .video(new InputFile(inputStream, fileName))
+          .build();
 
-    try {
-      telegramClient.execute(message);
-    } catch (TelegramApiException ex) {
+      sendVideo.setWidth(1280);
+      sendVideo.setHeight(720);
+      telegramClient.execute(sendVideo);
+    } catch (TelegramApiException | IOException ex) {
       throw new RuntimeException(ex.getMessage());
     }
   }
